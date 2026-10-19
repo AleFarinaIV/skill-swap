@@ -1,0 +1,48 @@
+name: Task
+description: Attività di sviluppo, test, documentazione o manutenzione
+title: ""
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Crea una task piccola, verificabile e collegata a una milestone o a un obiettivo della roadmap.
+  - type: textarea
+    id: context
+    attributes:
+      label: Contesto
+      description: Quale problema o necessità motiva il lavoro?
+      placeholder: Descrivi il contesto e il risultato atteso.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Obiettivo e ambito
+      description: Che cosa deve cambiare? Che cosa è esplicitamente fuori scope?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criteri di accettazione
+      description: Elenca risultati osservabili e verificabili.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Test e controlli
+      description: Quali test o verifiche sono necessari?
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dipendenze e riferimenti
+      description: Issue, PR, decisioni o documenti correlati.
+    validations:
+      required: false
