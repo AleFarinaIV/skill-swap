@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: skill-swap-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: skillswap
+      POSTGRES_PASSWORD: skillswap_dev
+      POSTGRES_DB: skillswap
+    ports:
+      - "55433:5432"
+    volumes:
+      - skill_swap_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U skillswap -d skillswap"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  skill_swap_postgres_data:

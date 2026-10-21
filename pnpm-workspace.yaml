@@ -1,0 +1,15 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# pnpm 12 blocks dependency install scripts unless explicitly approved.
+# These packages need build scripts for Prisma Client, SWC, or native tooling.
+allowBuilds:
+  "@prisma/client": true
+  "@prisma/engines": true
+  "@swc/core": true
+  esbuild: true
+  prisma: true
+  sharp: true
+
+nodeLinker: hoisted
