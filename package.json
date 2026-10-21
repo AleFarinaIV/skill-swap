@@ -1,0 +1,35 @@
+{
+  "name": "skill-swap",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@12.14.0",
+  "engines": {
+    "node": ">=24.11.0",
+    "pnpm": ">=12.14.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @skill-swap/shared build && concurrently -k -n web,api \"pnpm --filter @skill-swap/web dev\" \"pnpm --filter @skill-swap/api dev\"",
+    "dev:web": "pnpm --filter @skill-swap/web dev",
+    "dev:api": "pnpm --filter @skill-swap/api dev",
+    "build": "pnpm --filter @skill-swap/db db:generate && pnpm -r --if-present build",
+    "lint": "eslint .",
+    "typecheck": "pnpm --filter @skill-swap/shared build && pnpm --filter @skill-swap/db db:generate && pnpm -r --if-present typecheck",
+    "test": "pnpm --filter @skill-swap/shared build && pnpm --filter @skill-swap/api test",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "format": "prettier --write \"apps/**/*.{ts,tsx,css}\" \"packages/**/*.{ts,json}\" \"*.{json,yaml,yml,mjs}\"",
+    "format:check": "prettier --check \"apps/**/*.{ts,tsx,css}\" \"packages/**/*.{ts,json}\" \"*.{json,yaml,yml,mjs}\"",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:generate": "pnpm --filter @skill-swap/db db:generate",
+    "db:migrate": "pnpm --filter @skill-swap/db db:migrate",
+    "db:studio": "pnpm --filter @skill-swap/db db:studio"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.35.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.0"
+  }
+}
